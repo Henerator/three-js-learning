@@ -7,6 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import * as THREE from 'three';
+import { Camera, Mesh, PerspectiveCamera, WebGLRenderer } from 'three';
 
 @Component({
   selector: 'app-fundamentals',
@@ -19,9 +20,7 @@ export class FundamentalsComponent implements AfterViewInit {
   constructor(@Inject(DOCUMENT) private document: Document) {}
 
   ngAfterViewInit(): void {
-    const canvas = this.canvasElement.nativeElement;
-    canvas.width = 800;
-    canvas.height = 400;
+    const canvas = this.canvasElement.nativeElement as HTMLCanvasElement;
 
     const renderer = new THREE.WebGLRenderer({ canvas });
 
@@ -50,6 +49,8 @@ export class FundamentalsComponent implements AfterViewInit {
     const animate = (time: number) => {
       time *= 0.001;
 
+      this.resize(renderer, camera);
+
       cubes.forEach((cube) => {
         cube.rotation.x = time;
         cube.rotation.y = time;
@@ -63,12 +64,25 @@ export class FundamentalsComponent implements AfterViewInit {
     requestAnimationFrame(animate);
   }
 
-  private createCube(color: string, x: number): THREE.Mesh {
+  private createCube(color: string, x: number): Mesh {
     const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
     const phongMaterial = new THREE.MeshPhongMaterial({ color });
     const cube = new THREE.Mesh(boxGeometry, phongMaterial);
     cube.position.x = x;
 
     return cube;
+  }
+
+  private resize(renderer: WebGLRenderer, camera: PerspectiveCamera): void {
+    const canvas = renderer.domElement;
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    const needResize = canvas.width !== width || canvas.height !== height;
+
+    if (needResize) {
+      renderer.setSize(width, height, false);
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
+    }
   }
 }

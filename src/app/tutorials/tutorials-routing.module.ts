@@ -1,16 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FeelSphereComponent } from './feel-sphere/feel-sphere.component';
-import { FundamentalsComponent } from './fundamentals/fundamentals.component';
 
 const routes: Routes = [
   {
     path: 'fundamentals',
-    component: FundamentalsComponent,
+    loadChildren: () =>
+      import('./1-fundamentals/fundamentals.module').then(
+        (module) => module.FundamentalsModule
+      ),
+  },
+  {
+    path: 'graph-scene',
+    loadChildren: () =>
+      import('./2-scene-graph/scene-graph.module').then(
+        (module) => module.SceneGraphModule
+      ),
   },
   {
     path: 'feel-sphere',
-    component: FeelSphereComponent,
+    loadChildren: () =>
+      import('./feel-sphere/feel-sphere.module').then(
+        (module) => module.FeelSphereModule
+      ),
   },
 ];
 

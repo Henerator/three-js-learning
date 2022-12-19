@@ -1,23 +1,22 @@
-import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
   Component,
   ElementRef,
-  Inject,
+  OnDestroy,
   ViewChild,
 } from '@angular/core';
 import * as THREE from 'three';
-import { Camera, Mesh, PerspectiveCamera, WebGLRenderer } from 'three';
+import { Mesh, PerspectiveCamera, WebGLRenderer } from 'three';
 
 @Component({
   selector: 'app-fundamentals',
   templateUrl: './fundamentals.component.html',
   styleUrls: ['./fundamentals.component.scss'],
 })
-export class FundamentalsComponent implements AfterViewInit {
+export class FundamentalsComponent implements AfterViewInit, OnDestroy {
   @ViewChild('canvas', { read: ElementRef }) canvasElement!: ElementRef;
 
-  constructor(@Inject(DOCUMENT) private document: Document) {}
+  private animationId!: number;
 
   ngAfterViewInit(): void {
     const canvas = this.canvasElement.nativeElement as HTMLCanvasElement;
@@ -41,6 +40,7 @@ export class FundamentalsComponent implements AfterViewInit {
     ];
 
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color('#111');
     scene.add(...cubes);
     scene.add(light);
 
@@ -58,10 +58,14 @@ export class FundamentalsComponent implements AfterViewInit {
 
       renderer.render(scene, camera);
 
-      requestAnimationFrame(animate);
+      this.animationId = window.requestAnimationFrame(animate);
     };
 
-    requestAnimationFrame(animate);
+    this.animationId = window.requestAnimationFrame(animate);
+  }
+
+  ngOnDestroy(): void {
+    cancelAnimationFrame(this.animationId);
   }
 
   private createCube(color: string, x: number): Mesh {

@@ -9,7 +9,11 @@ export class SidenavComponent {
   links = [
     {
       path: 'tutorials/fundamentals',
-      name: 'Fundamentals',
+      name: '1 - Fundamentals',
+    },
+    {
+      path: 'tutorials/graph-scene',
+      name: '2 - Graph scene',
     },
     {
       path: 'tutorials/feel-sphere',

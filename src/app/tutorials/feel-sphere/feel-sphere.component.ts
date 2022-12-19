@@ -4,6 +4,7 @@ import {
   Component,
   ElementRef,
   Inject,
+  OnDestroy,
   ViewChild,
 } from '@angular/core';
 import * as dat from 'dat.gui';
@@ -14,8 +15,10 @@ import * as THREE from 'three';
   templateUrl: './feel-sphere.component.html',
   styleUrls: ['./feel-sphere.component.scss'],
 })
-export class FeelSphereComponent implements AfterViewInit {
+export class FeelSphereComponent implements AfterViewInit, OnDestroy {
   @ViewChild('canvas', { read: ElementRef }) canvasElement!: ElementRef;
+
+  private animationId!: number;
 
   constructor(@Inject(DOCUMENT) private document: Document) {}
 
@@ -181,9 +184,13 @@ export class FeelSphereComponent implements AfterViewInit {
       renderer.render(scene, camera);
 
       // Call tick again on the next frame
-      window.requestAnimationFrame(animate);
+      this.animationId = window.requestAnimationFrame(animate);
     };
 
     animate();
+  }
+
+  ngOnDestroy(): void {
+    cancelAnimationFrame(this.animationId);
   }
 }

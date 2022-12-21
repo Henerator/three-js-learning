@@ -13,7 +13,11 @@ export class SidenavComponent {
     },
     {
       path: 'tutorials/graph-scene',
-      name: '2 - Graph scene',
+      name: '2 - Scene graph',
+    },
+    {
+      path: 'tutorials/custom-geometry',
+      name: '3 - Custom geometry',
     },
     {
       path: 'tutorials/feel-sphere',

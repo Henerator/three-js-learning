@@ -17,6 +17,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'custom-geometry',
+    loadChildren: () =>
+      import('./3-custom-geometry/custom-geometry.module').then(
+        (module) => module.CustomGeometryModule
+      ),
+  },
+  {
     path: 'feel-sphere',
     loadChildren: () =>
       import('./feel-sphere/feel-sphere.module').then(

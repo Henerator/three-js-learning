@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import * as THREE from 'three';
 import {
-  Mesh,
   Object3D,
   PerspectiveCamera,
   PointLight,

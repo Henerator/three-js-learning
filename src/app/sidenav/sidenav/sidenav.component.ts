@@ -20,6 +20,10 @@ export class SidenavComponent {
       name: '3 - Custom geometry',
     },
     {
+      path: 'tutorials/rain-drop-effect',
+      name: '4 - Rain drop effect',
+    },
+    {
       path: 'tutorials/feel-sphere',
       name: 'Feel sphere',
     },

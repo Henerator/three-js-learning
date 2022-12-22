@@ -24,6 +24,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'rain-drop-effect',
+    loadChildren: () =>
+      import('./4-rain-drop-effect/rain-drop-effect.module').then(
+        (module) => module.RainDropEffectModule
+      ),
+  },
+  {
     path: 'feel-sphere',
     loadChildren: () =>
       import('./feel-sphere/feel-sphere.module').then(

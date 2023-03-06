@@ -31,6 +31,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'game-of-life',
+    loadChildren: () =>
+      import('./5-game-of-life/game-of-life.module').then(
+        (module) => module.GameOfLifeModule
+      ),
+  },
+  {
     path: 'feel-sphere',
     loadChildren: () =>
       import('./feel-sphere/feel-sphere.module').then(

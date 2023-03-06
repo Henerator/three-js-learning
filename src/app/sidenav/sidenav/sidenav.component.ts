@@ -24,6 +24,10 @@ export class SidenavComponent {
       name: '4 - Rain drop effect',
     },
     {
+      path: 'tutorials/game-of-life',
+      name: '5 - Game of life',
+    },
+    {
       path: 'tutorials/feel-sphere',
       name: 'Feel sphere',
     },

@@ -28,6 +28,10 @@ export class SidenavComponent {
       name: '5 - Game of life',
     },
     {
+      path: 'tutorials/particles-image',
+      name: '6 - Particles image',
+    },
+    {
       path: 'tutorials/feel-sphere',
       name: 'Feel sphere',
     },

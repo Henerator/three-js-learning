@@ -38,6 +38,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'particles-image',
+    loadChildren: () =>
+      import('./6 - particles-image/particles-image.module').then(
+        (module) => module.ParticlesImageModule
+      ),
+  },
+  {
     path: 'feel-sphere',
     loadChildren: () =>
       import('./feel-sphere/feel-sphere.module').then(

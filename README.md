@@ -25,3 +25,25 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Materials
+
+### Depth test
+
+Depth test is a tool built in today's GPUs to allow to get the desired draw output regardless of the order which the objects are drawn. This is normally very useful but it comes with a critical weakness: depth and blending(transparency) do not work together. Why is this the case? Well what depth test does is that for every pixel that is drawn, the distance(depth) of that pixel to the camera is compared to the depth value stored in that the pixel. If the distance is less that the stored depth value, the pixel is drawn, otherwise that pixel is discarded.
+
+## Shaders
+
+### Variable Qualifiers
+
+- **const** – The declaration is of a compile time constant.
+
+- **attribute** – Global variables that may change per vertex, that are passed from the OpenGL application to vertex shaders. This qualifier can only be used in vertex shaders. For the shader this is a read-only variable.
+
+  - **in** for vertex shader
+
+- **uniform** – Global variables that may change per primitive, that are passed from the OpenGL application to the shaders. This qualifier can be used in both vertex and fragment shaders. For the shaders this is a read-only variable.
+
+- **varying** – used for interpolated data between a vertex shader and a fragment shader. Available for writing in the vertex shader, and read-only in a fragment shader.
+
+  - **out** for vertex shader. **in** for fragment shader

@@ -9,7 +9,6 @@ import * as THREE from 'three';
 import {
   DataTexture,
   OrthographicCamera,
-  Scene,
   ShaderMaterial,
   WebGLRenderer,
   WebGLRenderTarget,
@@ -35,7 +34,7 @@ export class GameOfLifeComponent implements AfterViewInit, OnDestroy {
   private material!: ShaderMaterial;
   private animationId!: number;
 
-  async ngAfterViewInit(): Promise<void> {
+  ngAfterViewInit(): void {
     this.createRenderer();
     this.createCamera();
 

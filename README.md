@@ -32,6 +32,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 Depth test is a tool built in today's GPUs to allow to get the desired draw output regardless of the order which the objects are drawn. This is normally very useful but it comes with a critical weakness: depth and blending(transparency) do not work together. Why is this the case? Well what depth test does is that for every pixel that is drawn, the distance(depth) of that pixel to the camera is compared to the depth value stored in that the pixel. If the distance is less that the stored depth value, the pixel is drawn, otherwise that pixel is discarded.
 
+## Deploy
+
+- `npm run build`
+- `git push -d origin gh-pages`
+- `git subtree push --prefix dist origin gh-pages`
+
 ## Shaders
 
 ### Variable Qualifiers

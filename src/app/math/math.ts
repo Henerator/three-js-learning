@@ -6,4 +6,8 @@ export class MathHelper {
   static randomSign(): number {
     return Math.random() > 0.5 ? 1.0 : -1.0;
   }
+
+  static degreeToRadian(degree: number): number {
+    return (Math.PI / 180) * degree;
+  }
 }

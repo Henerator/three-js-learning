@@ -40,14 +40,19 @@ const routes: Routes = [
   {
     path: 'particles-image',
     loadChildren: () =>
-      import('./6 - particles-image/particles-image.module').then(
+      import('./6-particles-image/particles-image.module').then(
         (module) => module.ParticlesImageModule
       ),
   },
   {
+    path: 'globe',
+    loadChildren: () =>
+      import('./7-globe/globe.module').then((module) => module.GlobeModule),
+  },
+  {
     path: 'feel-sphere',
     loadChildren: () =>
-      import('./feel-sphere/feel-sphere.module').then(
+      import('./8-feel-sphere/feel-sphere.module').then(
         (module) => module.FeelSphereModule
       ),
   },

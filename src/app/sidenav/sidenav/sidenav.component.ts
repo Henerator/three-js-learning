@@ -32,8 +32,12 @@ export class SidenavComponent {
       name: '6 - Particles image',
     },
     {
+      path: 'tutorials/globe',
+      name: '7 - Globe',
+    },
+    {
       path: 'tutorials/feel-sphere',
-      name: 'Feel sphere',
+      name: '8 - Feel sphere',
     },
   ];
 }

@@ -39,5 +39,9 @@ export class SidenavComponent {
       path: 'tutorials/feel-sphere',
       name: '8 - Feel sphere',
     },
+    {
+      path: 'tutorials/reflective-grid',
+      name: '9 - Reflective grid',
+    },
   ];
 }

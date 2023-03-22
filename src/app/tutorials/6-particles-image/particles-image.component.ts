@@ -147,14 +147,14 @@ export class ParticlesImageComponent implements AfterViewInit, OnDestroy {
 
     // controls
     window.addEventListener('mousewheel', this.bindedOnScroll);
-    this.canvas.addEventListener('pointermove', this.bindedOnMouseMove);
+    this.canvas.addEventListener('mousemove', this.bindedOnMouseMove);
     this.canvas.addEventListener('mousedown', this.bindedOnMouseDown);
     this.canvas.addEventListener('mouseup', this.bindedOnMouseUp);
   }
 
   ngOnDestroy(): void {
     this.renderer.setAnimationLoop(null);
-    this.canvas.removeEventListener('pointermove', this.bindedOnMouseMove);
+    this.canvas.removeEventListener('mousemove', this.bindedOnMouseMove);
     this.canvas.removeEventListener('mousedown', this.bindedOnMouseDown);
     this.canvas.removeEventListener('mouseup', this.bindedOnMouseUp);
     window.removeEventListener('mousewheel', this.bindedOnScroll);

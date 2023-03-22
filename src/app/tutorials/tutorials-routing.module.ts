@@ -56,6 +56,13 @@ const routes: Routes = [
         (module) => module.FeelSphereModule
       ),
   },
+  {
+    path: 'reflective-grid',
+    loadChildren: () =>
+      import('./9-reflective-grid/reflective-grid.module').then(
+        (module) => module.ReflectiveGridModule
+      ),
+  },
 ];
 
 @NgModule({

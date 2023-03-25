@@ -63,6 +63,11 @@ const routes: Routes = [
         (module) => module.ReflectiveGridModule
       ),
   },
+  {
+    path: 'waves',
+    loadChildren: () =>
+      import('./10-waves/waves.module').then((module) => module.WavesModule),
+  },
 ];
 
 @NgModule({

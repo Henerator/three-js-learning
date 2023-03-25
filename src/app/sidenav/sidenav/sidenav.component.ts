@@ -43,5 +43,9 @@ export class SidenavComponent {
       path: 'tutorials/reflective-grid',
       name: '9 - Reflective grid',
     },
+    {
+      path: 'tutorials/waves',
+      name: '10 - Waves',
+    },
   ];
 }

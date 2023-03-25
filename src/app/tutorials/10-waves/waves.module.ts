@@ -1,17 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TemplateComponent } from './template.component';
+import { WavesComponent } from './waves.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: TemplateComponent,
+    component: WavesComponent,
   },
 ];
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes)],
-  declarations: [TemplateComponent],
+  declarations: [WavesComponent],
 })
-export class TemplateModule {}
+export class WavesModule {}

@@ -11,7 +11,7 @@ import vertexShader from './shader-vertex.glsl';
 import fragmentShader from './shader-fragment.glsl';
 
 @Component({
-  selector: 'app-template',
+  selector: 'app-waves',
   templateUrl: './waves.component.html',
   styleUrls: ['./waves.component.scss'],
 })

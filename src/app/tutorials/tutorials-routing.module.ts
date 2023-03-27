@@ -68,6 +68,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./10-waves/waves.module').then((module) => module.WavesModule),
   },
+  {
+    path: 'earth-coords',
+    loadChildren: () =>
+      import('./11-earth-coords/earth-coords.module').then(
+        (module) => module.EarthCoordsModule
+      ),
+  },
 ];
 
 @NgModule({

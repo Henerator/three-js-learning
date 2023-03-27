@@ -47,5 +47,9 @@ export class SidenavComponent {
       path: 'tutorials/waves',
       name: '10 - Waves',
     },
+    {
+      path: 'tutorials/earth-coords',
+      name: '11 - Earth coords',
+    },
   ];
 }

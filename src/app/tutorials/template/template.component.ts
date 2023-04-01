@@ -5,6 +5,7 @@ import {
   OnDestroy,
   ViewChild,
 } from '@angular/core';
+import { fromEvent, Subscription } from 'rxjs';
 import * as THREE from 'three';
 
 @Component({
@@ -16,8 +17,12 @@ export class TemplateComponent implements AfterViewInit, OnDestroy {
   @ViewChild('canvas', { read: ElementRef }) canvasElement!: ElementRef;
 
   private renderer!: THREE.WebGLRenderer;
+  private subscription = new Subscription();
+
+  constructor(private elementRef: ElementRef) {}
 
   ngAfterViewInit(): void {
+    const container = this.elementRef.nativeElement as HTMLElement;
     const canvas = this.canvasElement.nativeElement as HTMLCanvasElement;
 
     const camera = new THREE.PerspectiveCamera(
@@ -40,6 +45,14 @@ export class TemplateComponent implements AfterViewInit, OnDestroy {
     renderer.setAnimationLoop(animation);
     this.renderer = renderer;
 
+    this.subscription.add(
+      fromEvent(window, 'resize').subscribe(() => {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+      })
+    );
+
     function animation(time: number) {
       mesh.rotation.x = time / 2000;
       mesh.rotation.y = time / 1000;
@@ -49,6 +62,7 @@ export class TemplateComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.subscription.unsubscribe();
     this.renderer.setAnimationLoop(null);
   }
 }

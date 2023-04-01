@@ -12,6 +12,7 @@ import gsap from 'gsap';
 import vertexShader from './shader-vertex.glsl';
 import fragmentShader from './shader-fragment.glsl';
 import { MathHelper } from 'src/app/math/math';
+import { fromEvent, merge, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-particles-image',
@@ -21,7 +22,6 @@ import { MathHelper } from 'src/app/math/math';
 export class ParticlesImageComponent implements AfterViewInit, OnDestroy {
   @ViewChild('canvas', { read: ElementRef }) canvasElement!: ElementRef;
 
-  private canvas!: HTMLCanvasElement;
   private raycaster = new THREE.Raycaster();
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
@@ -35,39 +35,31 @@ export class ParticlesImageComponent implements AfterViewInit, OnDestroy {
   private offsetStep = 0;
   private pointer = new THREE.Vector2();
   private mouse = new THREE.Vector2();
-  private canvasSettings = {
-    top: 0,
-    left: 0,
-    width: 0,
-    height: 0,
-  };
+  private canvasSettings!: DOMRect;
   private settings = {
     transition: 0,
   };
 
-  private bindedOnScroll = this.onScroll.bind(this);
-  private bindedOnMouseMove = this.onMouseMove.bind(this);
-  private bindedOnMouseDown = this.onMouseDown.bind(this);
-  private bindedOnMouseUp = this.onMouseUp.bind(this);
+  private subscription = new Subscription();
 
   constructor(private elementRef: ElementRef) {}
 
-  ngAfterViewInit(): void {
-    const element = this.elementRef.nativeElement as HTMLElement;
+  async ngAfterViewInit(): Promise<void> {
+    // getting wrong top position in BoundingClientRect on route change
+    // previous route's component still visible and shifts current route component down
+    // make timeout to fix it
+    await new Promise((resolve) => setTimeout(resolve));
+
+    const container = this.elementRef.nativeElement as HTMLElement;
+    const canvas = this.canvasElement.nativeElement as HTMLCanvasElement;
 
     const gui = new dat.GUI({ autoPlace: false });
     gui.add(this.settings, 'transition', 0, 1, 0.01);
-    element.append(gui.domElement);
+    container.append(gui.domElement);
 
-    const canvas = this.canvasElement.nativeElement as HTMLCanvasElement;
-    const canvasRect = canvas.getBoundingClientRect();
-    const width = canvas.clientWidth;
-    const height = canvas.clientHeight;
-    this.canvas = canvas;
-    this.canvasSettings.width = width;
-    this.canvasSettings.height = height;
-    this.canvasSettings.top = canvasRect.top;
-    this.canvasSettings.left = canvasRect.left;
+    this.canvasSettings = container.getBoundingClientRect();
+    const width = container.clientWidth;
+    const height = container.clientHeight;
 
     const textureLoader = new THREE.TextureLoader();
     const textures = {
@@ -141,23 +133,50 @@ export class ParticlesImageComponent implements AfterViewInit, OnDestroy {
     this.scene.add(mesh);
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-    renderer.setSize(width, height);
+    renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setAnimationLoop(this.render.bind(this));
     this.renderer = renderer;
 
     // controls
-    window.addEventListener('mousewheel', this.bindedOnScroll);
-    this.canvas.addEventListener('mousemove', this.bindedOnMouseMove);
-    this.canvas.addEventListener('mousedown', this.bindedOnMouseDown);
-    this.canvas.addEventListener('mouseup', this.bindedOnMouseUp);
+    this.subscription.add(
+      fromEvent(window, 'resize').subscribe(() => {
+        this.camera.aspect = container.clientWidth / container.clientHeight;
+        this.camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+      })
+    );
+
+    this.subscription.add(
+      fromEvent(window, 'mousewheel').subscribe((event) => {
+        this.onScroll(event);
+      })
+    );
+
+    this.subscription.add(
+      fromEvent(container, 'mousedown').subscribe(() => {
+        this.onMouseDown();
+      })
+    );
+
+    this.subscription.add(
+      merge(
+        fromEvent(container, 'mouseout'),
+        fromEvent(container, 'mouseup')
+      ).subscribe(() => {
+        this.onMouseUp();
+      })
+    );
+
+    this.subscription.add(
+      fromEvent<MouseEvent>(container, 'mousemove').subscribe((event) => {
+        this.onMouseMove(event);
+      })
+    );
   }
 
   ngOnDestroy(): void {
+    this.subscription.unsubscribe();
     this.renderer.setAnimationLoop(null);
-    this.canvas.removeEventListener('mousemove', this.bindedOnMouseMove);
-    this.canvas.removeEventListener('mousedown', this.bindedOnMouseDown);
-    this.canvas.removeEventListener('mouseup', this.bindedOnMouseUp);
-    window.removeEventListener('mousewheel', this.bindedOnScroll);
   }
 
   private render(time: number): void {

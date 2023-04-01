@@ -7,6 +7,14 @@ export class MathHelper {
     return Math.random() > 0.5 ? 1.0 : -1.0;
   }
 
+  static randomGaussian(mean = 0, stdev = 1): number {
+    const u = 1 - Math.random();
+    const v = Math.random();
+    const z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+
+    return z * stdev + mean;
+  }
+
   static degreeToRadian(degree: number): number {
     return (Math.PI / 180) * degree;
   }

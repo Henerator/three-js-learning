@@ -51,5 +51,9 @@ export class SidenavComponent {
       path: 'tutorials/earth-coords',
       name: '11 - Earth coords',
     },
+    {
+      path: 'tutorials/galaxy',
+      name: '12 - Galaxy',
+    },
   ];
 }

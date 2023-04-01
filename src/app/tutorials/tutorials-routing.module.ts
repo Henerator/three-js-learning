@@ -75,6 +75,13 @@ const routes: Routes = [
         (module) => module.EarthCoordsModule
       ),
   },
+  {
+    path: 'galaxy',
+    loadChildren: () =>
+      import('./12-galaxy/galaxy.module').then(
+        (module) => module.GalaxyModule
+      ),
+  },
 ];
 
 @NgModule({

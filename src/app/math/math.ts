@@ -15,6 +15,10 @@ export class MathHelper {
     return z * stdev + mean;
   }
 
+  static randomRadian(): number {
+    return Math.random() * Math.PI * 2;
+  }
+
   static degreeToRadian(degree: number): number {
     return (Math.PI / 180) * degree;
   }

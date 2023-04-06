@@ -9,11 +9,11 @@ import { fromEvent, Subscription } from 'rxjs';
 import * as THREE from 'three';
 
 @Component({
-  selector: 'app-template',
-  templateUrl: './template.component.html',
-  styleUrls: ['./template.component.scss'],
+  selector: 'app-rain-image',
+  templateUrl: './rain-image.component.html',
+  styleUrls: ['./rain-image.component.scss'],
 })
-export class TemplateComponent implements AfterViewInit, OnDestroy {
+export class RainImageComponent implements AfterViewInit, OnDestroy {
   @ViewChild('canvas', { read: ElementRef }) canvasElement!: ElementRef;
 
   private renderer!: THREE.WebGLRenderer;
@@ -27,7 +27,7 @@ export class TemplateComponent implements AfterViewInit, OnDestroy {
 
     const camera = new THREE.PerspectiveCamera(
       70,
-      container.clientWidth / container.clientHeight,
+      canvas.clientWidth / canvas.clientHeight,
       0.01,
       10
     );
@@ -41,7 +41,7 @@ export class TemplateComponent implements AfterViewInit, OnDestroy {
     scene.add(mesh);
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
     renderer.setAnimationLoop(animation);
     this.renderer = renderer;
 

@@ -78,8 +78,20 @@ const routes: Routes = [
   {
     path: 'galaxy',
     loadChildren: () =>
-      import('./12-galaxy/galaxy.module').then(
-        (module) => module.GalaxyModule
+      import('./12-galaxy/galaxy.module').then((module) => module.GalaxyModule),
+  },
+  {
+    path: 'galaxy-2',
+    loadChildren: () =>
+      import('./13-galaxy-2/galaxy.module').then(
+        (module) => module.Galaxy2Module
+      ),
+  },
+  {
+    path: 'rain-image',
+    loadChildren: () =>
+      import('./16-rain-image/rain-image.module').then(
+        (module) => module.RainImageModule
       ),
   },
 ];

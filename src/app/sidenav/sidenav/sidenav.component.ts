@@ -55,5 +55,13 @@ export class SidenavComponent {
       path: 'tutorials/galaxy',
       name: '12 - Galaxy',
     },
+    {
+      path: 'tutorials/galaxy-2',
+      name: '13 - Galaxy 2',
+    },
+    {
+      path: 'tutorials/rain-image',
+      name: '16 - Rain image (Draft)',
+    },
   ];
 }

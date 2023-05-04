@@ -88,6 +88,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'traveling-particles',
+    loadChildren: () =>
+      import('./14-traveling-particles/template.module').then(
+        (module) => module.TravelingParticlesModule
+      ),
+  },
+  {
     path: 'rain-image',
     loadChildren: () =>
       import('./16-rain-image/rain-image.module').then(

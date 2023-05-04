@@ -60,6 +60,10 @@ export class SidenavComponent {
       name: '13 - Galaxy 2',
     },
     {
+      path: 'tutorials/traveling-particles',
+      name: '14 - Traveling particles',
+    },
+    {
       path: 'tutorials/rain-image',
       name: '16 - Rain image (Draft)',
     },

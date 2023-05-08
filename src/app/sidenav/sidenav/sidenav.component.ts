@@ -64,6 +64,10 @@ export class SidenavComponent {
       name: '14 - Traveling particles',
     },
     {
+      path: 'tutorials/sun',
+      name: '15 - Sun',
+    },
+    {
       path: 'tutorials/rain-image',
       name: '16 - Rain image (Draft)',
     },

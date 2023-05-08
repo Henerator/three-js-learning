@@ -35,6 +35,7 @@ Depth test is a tool built in today's GPUs to allow to get the desired draw outp
 ## Deploy
 
 - `npm run build`
+- `git commit`
 - `git push -d origin gh-pages`
 - `git subtree push --prefix dist origin gh-pages`
 

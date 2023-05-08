@@ -5,16 +5,12 @@ const routes: Routes = [
   {
     path: 'fundamentals',
     loadChildren: () =>
-      import('./1-fundamentals/fundamentals.module').then(
-        (module) => module.FundamentalsModule
-      ),
+      import('./1-fundamentals/fundamentals.module').then((module) => module.FundamentalsModule),
   },
   {
     path: 'graph-scene',
     loadChildren: () =>
-      import('./2-scene-graph/scene-graph.module').then(
-        (module) => module.SceneGraphModule
-      ),
+      import('./2-scene-graph/scene-graph.module').then((module) => module.SceneGraphModule),
   },
   {
     path: 'custom-geometry',
@@ -33,9 +29,7 @@ const routes: Routes = [
   {
     path: 'game-of-life',
     loadChildren: () =>
-      import('./5-game-of-life/game-of-life.module').then(
-        (module) => module.GameOfLifeModule
-      ),
+      import('./5-game-of-life/game-of-life.module').then((module) => module.GameOfLifeModule),
   },
   {
     path: 'particles-image',
@@ -46,15 +40,12 @@ const routes: Routes = [
   },
   {
     path: 'globe',
-    loadChildren: () =>
-      import('./7-globe/globe.module').then((module) => module.GlobeModule),
+    loadChildren: () => import('./7-globe/globe.module').then((module) => module.GlobeModule),
   },
   {
     path: 'feel-sphere',
     loadChildren: () =>
-      import('./8-feel-sphere/feel-sphere.module').then(
-        (module) => module.FeelSphereModule
-      ),
+      import('./8-feel-sphere/feel-sphere.module').then((module) => module.FeelSphereModule),
   },
   {
     path: 'reflective-grid',
@@ -65,27 +56,21 @@ const routes: Routes = [
   },
   {
     path: 'waves',
-    loadChildren: () =>
-      import('./10-waves/waves.module').then((module) => module.WavesModule),
+    loadChildren: () => import('./10-waves/waves.module').then((module) => module.WavesModule),
   },
   {
     path: 'earth-coords',
     loadChildren: () =>
-      import('./11-earth-coords/earth-coords.module').then(
-        (module) => module.EarthCoordsModule
-      ),
+      import('./11-earth-coords/earth-coords.module').then((module) => module.EarthCoordsModule),
   },
   {
     path: 'galaxy',
-    loadChildren: () =>
-      import('./12-galaxy/galaxy.module').then((module) => module.GalaxyModule),
+    loadChildren: () => import('./12-galaxy/galaxy.module').then((module) => module.GalaxyModule),
   },
   {
     path: 'galaxy-2',
     loadChildren: () =>
-      import('./13-galaxy-2/galaxy.module').then(
-        (module) => module.Galaxy2Module
-      ),
+      import('./13-galaxy-2/galaxy.module').then((module) => module.Galaxy2Module),
   },
   {
     path: 'traveling-particles',
@@ -95,11 +80,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'sun',
+    loadChildren: () => import('./15-sun/template.module').then((module) => module.SunModule),
+  },
+  {
     path: 'rain-image',
     loadChildren: () =>
-      import('./16-rain-image/rain-image.module').then(
-        (module) => module.RainImageModule
-      ),
+      import('./16-rain-image/rain-image.module').then((module) => module.RainImageModule),
   },
 ];
 
